@@ -18,9 +18,9 @@
     };
     require_once('../class.rename.php');
     $objFileNewName = new fly_fileRename(
-      $originalFileName = $_FILES['file']['name'],
-      $fileStorage = '../img/',
-      $includeTimestamp = true,
+      $originalFileName = $_FILES['file']['name'], // required
+      $fileStorage = '../img/', // required
+      $includeTimestamp = false,
       $whitespaceToUnderscores = true,
       $overwriteExistingFiles = false,
       $maxCharacterLimit = 150 // 200 Character max (including optional timestamp and file extension), 5 Character min
@@ -42,6 +42,7 @@
   <?php
     echo '<pre>';
     print_r($objFileNewName);
+    //var_dump($objFileNewName);
     echo '</pre>';
   ?>
   </div>

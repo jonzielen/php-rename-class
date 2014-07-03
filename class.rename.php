@@ -26,7 +26,7 @@
         $this->maxCharacterLimit = $maxCharacterLimit;
       }
 
-      $this::fileRename($originalFileName, $fileStorage);
+      $this->fileRename($originalFileName, $fileStorage);
     }
 
     private function fileRename($originalFileName, $fileStorage) {
@@ -36,38 +36,38 @@
       $this->extension = end($this->temp);
 
       // recompile file name
-      $this::recompileFileName($this->temp);
+      $this->recompileFileName($this->temp);
 
       // remove nonletters and numbers
-      $this::sanitize($this->justFileName, $this->compiledName);
+      $this->sanitize($this->justFileName, $this->compiledName);
 
       // if timestamp and no overwrite, convert to lowercase
       if ($this->includeTimestamp && $this->overwriteExistingFiles == false) {
-        $this::toLowercase($this->justFileName);
+        $this->toLowercase($this->justFileName);
       }
 
       // remove white spaces
-      $this::whiteSpace($this->whitespaceToUnderscores, $this->justFileName);
+      $this->whiteSpace($this->whitespaceToUnderscores, $this->justFileName);
 
       // if file name is empty, give default value
       if ($this->justFileName == '' || preg_match('/-|_/', $this->justFileName[0])) {
-        $this::checkFileName($this->justFileName, $this->extension);
+        $this->checkFileName($this->justFileName, $this->extension);
       }
 
       // litmit file name length
-      $this::limitFileName($this->maxCharacterLimit);
+      $this->limitFileName($this->maxCharacterLimit);
 
       // add time stamp
       if ($this->includeTimestamp) {
-        $this::addTimeStamp();
+        $this->addTimeStamp();
       }
 
       // overwrite existing files
       if ($this->overwriteExistingFiles == false) {
-        $this::overwriteFiles($this->fileStorage, $this->justFileName, $this->extension);
+        $this->overwriteFiles($this->fileStorage, $this->justFileName, $this->extension);
       }
 
-      $this::compile($this->justFileName, $this->extension);
+      $this->compile($this->justFileName, $this->extension);
     }
 
     private function recompileFileName($temp) {
